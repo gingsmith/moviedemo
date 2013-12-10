@@ -69,6 +69,8 @@ object MovieRec {
 
     println("got here2")
 
+    println("size is: " + top.size)
+
     top.foreach{ x => println(x(2)) }
 
     sc.stop()
