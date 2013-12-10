@@ -68,7 +68,7 @@ object MovieRec {
         .filter{ a => topidx.contains(a(0).toInt) }
         .collect()
 
-    println("top is: " + top)
+    println("top is: " + top.size)
 
     top.foreach{ x => println(x(1)) }
 
