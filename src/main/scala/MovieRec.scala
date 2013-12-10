@@ -61,14 +61,14 @@ object MovieRec {
     val sorted = recs.sortingPermutation()
     val topidx = sorted.reverse.slice(0,20)
 
-    println("top idx is: " + topidx.size)
+    //println("top idx is: " + topidx.size)
 
     val top = sc.textFile(titles)
         .map{ line => line.split("::") }
         .filter{ a => topidx.contains(a(0).toInt) }
         .collect()
 
-    println("top is: " + top.size)
+    //println("top is: " + top.size)
 
     top.foreach{ x => println(x(1)) }
 
