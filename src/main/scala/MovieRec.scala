@@ -52,26 +52,23 @@ object MovieRec {
         .map( b => b(1).split(" ").map(c => c.toDouble) )
         .collect() )
 
-    println("got here")
-
     val movie = sc.textFile(moviefeats)
     val moviemat = new DoubleMatrix( movie.map{ line => line.split(",") }
         .map{ a => a(1).split(" ").map(b => b.toDouble) }
         .collect() )
 
     val recs = moviemat.mmul(uservec.transpose())
-    val order = recs.sortingPermutation().slice(0,20)
+    val sorted = recs.sortingPermutation()
+    val topidx = sorted.slice(0,20)
 
     val top = sc.textFile(titles)
         .map{ line => line.split("::") }
-        .filter{ a => order.contains(a(0).toInt) }
+        .filter{ a => topidx.contains(a(0).toInt) }
         .collect()
-
-    println("got here2")
 
     println("size is: " + top.size)
 
-    top.foreach{ x => println(x(2)) }
+    top.foreach{ x => println(x(1)) }
 
     sc.stop()
 
