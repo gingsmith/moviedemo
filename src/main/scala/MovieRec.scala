@@ -42,9 +42,9 @@ object MovieRec {
 
     val user = sc.textFile(userfeats)
     val uservec = new DoubleMatrix( 
-        user.map{ line => line.split(",") }
-        .filter{ a => (a(0).toInt == userid) }
-        .map{ b => b(1).split(" ").map(c => c.toDouble) }
+        user.map( line => line.split(",") )
+        .filter( a => (a(0).toInt == userid) )
+        .map( b => b(1).split(" ").map(c => c.toDouble) )
         .collect() )
 
     val movie = sc.textFile(moviefeats)
