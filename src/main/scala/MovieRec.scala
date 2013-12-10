@@ -51,7 +51,7 @@ object MovieRec {
         .filter( a => (a(0).toInt == userid) )
         .map( b => b(1).split(" ").map(c => c.toDouble) )
         .collect() )
-    
+
     println("got here")
 
     val movie = sc.textFile(moviefeats)
@@ -59,7 +59,7 @@ object MovieRec {
         .map{ a => a(1).split(" ").map(b => b.toDouble) }
         .collect() )
 
-    val recs = moviemat.mmul(uservec)
+    val recs = moviemat.mmul(uservec.transpose())
     val order = recs.sortingPermutation().slice(0,20)
 
     val top = sc.textFile(titles)
