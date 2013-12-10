@@ -41,9 +41,10 @@ object MovieRec {
     val sc = new SparkContext(master, "MovieRec",sparkhome,List(jar));
 
     val user = sc.textFile(userfeats)
-    val uservec = new DoubleMatrix( user.map{ line => line.split(",") }
-        .filter{ a => a(0).toInt == userid }
-        .map{ a => a(1).split(" ").map(b => b.toDouble) }
+    val uservec = new DoubleMatrix( 
+        user.map{ line => line.split(",") }
+        .filter{ a => (a(0).toInt == userid) }
+        .map{ b => b(1).split(" ").map(c => c.toDouble) }
         .collect() )
 
     val movie = sc.textFile(moviefeats)
