@@ -1,4 +1,4 @@
 moviedemo
 =======================
 
-Demo with movielens dataset
+mllib demo with movielens dataset
