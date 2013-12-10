@@ -67,7 +67,9 @@ object MovieRec {
         .filter{ a => order.contains(a(0)) }
         .collect()
 
-    top.map{ x => println(x(2)) }
+    println("got here2")
+
+    top.foreach{ x => println(x(2)) }
 
     sc.stop()
 
