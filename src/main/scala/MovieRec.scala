@@ -41,16 +41,17 @@ object MovieRec {
     val sc = new SparkContext(master, "MovieRec",sparkhome,List(jar));
 
     val user = sc.textFile(userfeats)
-    val usermap = user.map( line => line.split(",") )
-    val userfilt = usermap.filter( a => a(0).toInt == userid )
-    val usermap2 = userfilt.map( b => b(1) )
-      .map( c => c.split(" ").map(d => d.toDouble) ).collect()
-    val uservec = new DoubleMatrix( usermap2(0) ) 
-    // val uservec = new DoubleMatrix( 
-    //     user.map( line => line.split(",") )
-    //     .filter( a => (a(0).toInt == userid) )
-    //     .map( b => b(1).split(" ").map(c => c.toDouble) )
-    //     .collect() )
+    // val usermap = user.map( line => line.split(",") )
+    // val userfilt = usermap.filter( a => a(0).toInt == userid )
+    // val usermap2 = userfilt.map( b => b(1) )
+    //   .map( c => c.split(" ").map(d => d.toDouble) ).collect()
+    // val uservec = new DoubleMatrix( usermap2(0) ) 
+    val uservec = new DoubleMatrix( 
+        user.map( line => line.split(",") )
+        .filter( a => (a(0).toInt == userid) )
+        .map( b => b(1).split(" ").map(c => c.toDouble) )
+        .collect() )
+    
     println("got here")
 
     val movie = sc.textFile(moviefeats)
