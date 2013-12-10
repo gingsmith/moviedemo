@@ -45,7 +45,7 @@ object MovieRec {
     val userfilt = usermap.filter( a => a(0).toInt == userid )
     val usermap2 = userfilt.map( b => b(1) )
       .map( c => c.split(" ").map(d => d.toDouble) ).collect()
-    val uservec = new DoubleMatrix( usermap2 ) 
+    val uservec = new DoubleMatrix( usermap2(0) ) 
     // val uservec = new DoubleMatrix( 
     //     user.map( line => line.split(",") )
     //     .filter( a => (a(0).toInt == userid) )
