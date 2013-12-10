@@ -64,7 +64,7 @@ object MovieRec {
 
     val top = sc.textFile(titles)
         .map{ line => line.split("::") }
-        .filter{ a => order.contains(a(0)) }
+        .filter{ a => order.contains(a(0).toInt) }
         .collect()
 
     println("got here2")
